@@ -5,6 +5,15 @@
 - dropZone과 hover시 : `getBoundingClientRect` 와 event.clientY로 겹치는 아이템의 중심부를 판단, 앞서 판단한 기준으로 `insertAdjacentElement`를 활용한 DOM insert작업
 - dragEnd시 : drop된 아이템의 상태를 dropZone의 상태값으로 변경하는 `PUT`메소드 요청.
 
+## 핵심 코드
+
+// 마우스와 겹친상태에서의 sibling 요소 찾기
+![1](https://user-images.githubusercontent.com/55612761/210493793-2e7ecdce-cce8-455e-bab9-e3de6280e3e7.png)
+
+// drag&drop 로직
+![2](https://user-images.githubusercontent.com/55612761/210493805-98872338-4b44-4c1e-ab0e-80ac324ea579.png)
+
+
 ## 배운점
 - Javascript DOM을 React단에서 조작하는 경험
 - `React DOMException: Failed to execute 'removeChild' on 'Node': The node to be removed is not a child of this node` 에러를 맞닥드렸는데, 리액트에서 DOM을 리페인트 하기전에 node들을 지우는 과정에서 node를 감싸는 부모가 없기때문에 발생하는 이슈같다. 따라서 적절한 부모를 div태그로 만들어주어 해결.
@@ -18,3 +27,8 @@
 
 ## 사용기술
 Nextjs, Typescript 끝~
+
+
+
+https://user-images.githubusercontent.com/55612761/210493518-8ef184a9-b044-42b0-83b7-8f0d9a9c8ef7.mov
+
