@@ -1,34 +1,20 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## 프로젝트 요약
+- addEventListener의 "dragstart", "dragover", "dragend" 이벤트를 활용하여 Drag&Drop 칸반보드를 라이브러리 없이 직접 구현
+- dragStart시 : dragging className을 부여
+- dropZone과 hover시 : `getBoundingClientRect` 와 event.clientY로 겹치는 아이템의 중심부를 판단, 앞서 판단한 기준으로 `insertAdjacentElement`를 활용한 DOM insert작업
+- dragEnd시 : drop된 아이템의 상태를 dropZone의 상태값으로 변경하는 `PUT`메소드 요청.
 
-First, run the development server:
+## 배운점
+- Javascript DOM을 React단에서 조작하는 경험
+- `React DOMException: Failed to execute 'removeChild' on 'Node': The node to be removed is not a child of this node` 에러를 맞닥드렸는데, 리액트에서 DOM을 리페인트 하기전에 node들을 지우는 과정에서 node를 감싸는 부모가 없기때문에 발생하는 이슈같다. 따라서 적절한 부모를 div태그로 만들어주어 해결.
+- 조작된 DOM과 state간의 Sync를 무작정 맞추려는 노력을 했지만 구조적인 문제로, reRendering시에 state를 clear해주는 방법을 택했다. 
 
-```bash
-npm run dev
-# or
-yarn dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 특이사항 및 느낀점
+- JS에서 DOM을 잘 다루기는 힘들지만, 다룰줄 안다면 많은 기능을 구현할수있게된다.
+- React에서 DOM을 조작하는 과정은 주의사항이 필요하다. 최초에 구조를 짜는 과정에 신중을 기울여야한다!
+- State와 DOM간의 Sync를 맞추기보단, React에게 모든 렌더링 권한을 전가하여, 작업하는것이 옳다. 
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## 사용기술
+Nextjs, Typescript 끝~
